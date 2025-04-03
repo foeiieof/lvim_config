@@ -1,0 +1,31 @@
+{
+  "hello": {
+    "prefix": "hello",
+    "body": ["console.log('Hello, World!')"],
+    "description": "print Hello, World!"
+  },
+  "div": {
+    "prefix": "div",
+    "body": ["<div>${1}</div>${2}"],
+    "description": "div tag html"
+  },
+  "nav": {
+    "prefix": "nav",
+    "body": ["<nar>${1}</nav>${2}"],
+    "description": "nav tag html"
+  },
+  "image": {
+    "prefix": "image",
+    "body": ["<Image src={'${1}'} width={${2}} height={${3}} alt='' />"]
+  },
+  "span": {
+    "prefix": "span",
+    "body": ["<span>${1}</span>${2}"],
+    "description": "span tag html"
+  },
+  "p": {
+    "prefix": "p",
+    "body": ["<p>${1}</p>${2}"],
+    "description": "p tag html"
+  } 
+}

@@ -1,0 +1,35 @@
+[env]
+TERM = "xterm-256color"
+[window]
+padding.x = 1
+padding.y = 2
+#decorations = "Buttonless"
+decorations_theme_variant = "Light" 
+#opacity = 0.8
+#blur = true
+option_as_alt = "Both"
+startup_mode = "Windowed"
+[font]
+normal= { family = "Liga SFMono Nerd Font", style = "Regular" }
+size = 13
+offset = { x = 0 ,y = 3}
+[colors]
+cursor = { text = "#fffffa", cursor = "#737373" }
+vi_mode_cursor = {cursor = "#232323"}
+[colors.primary]
+#foreground = "#ffffff"
+background = "#fffffa"
+foreground = "#a1a19f"
+dim_foreground = "#8c8c8b"
+#[vi_mode_cursor]
+#vi_mode_cursor = { text = "<string>", cursor = "<string>" }
+# [colors.search]
+# matches = { foreground = "#000000", background = "#000000" }
+[cursor]
+style = { shape = "Underline", blinking = "Always" }
+
+[shell]
+program = "tmux" 
+# args = ""
+# program = "/opt/homebrew/Cellar/tmux/3.4_1/bin/tmux
+# args = ["tmux new-session -A -s default || tmux"]

@@ -1,0 +1,3 @@
+_HiStOrY_V2_
+DB::connection()->getPdo();
+DB::connection()->getPdo()

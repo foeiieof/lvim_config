@@ -8,10 +8,7 @@ for _, file in ipairs(plugin_files) do
   end
 end
 vim.list_extend(lvim.plugins, local_plugins)
--- end reload plugi
-
 vim.opt.termguicolors = true
-
 vim.opt.guicursor = "i:blinkon1-ver100"
 lvim.builtin.which_key.setup.plugins.presets.z = true
 lvim.builtin.which_key.setup.plugins.presets.nav = true
@@ -30,7 +27,6 @@ lvim.builtin.alpha.dashboard.section.header.val = function()
 end
 vim.cmd("colorscheme pablo")
 lvim.keys.insert_mode["<D-i>"] = "<C-c>"
--- lvim.colorscheme = 'framer_syntax_light'
 lvim.colorscheme = 'framer_syntax_dark'
 lvim.builtin.which_key.mappings["t"] = {
   name = "+Terminal",
@@ -39,48 +35,41 @@ lvim.builtin.which_key.mappings["t"] = {
   h = { "<cmd>2ToggleTerm size=10 direction=horizontal<cr>", "Split horizontal" },
 }
 lvim.builtin.cmp.active = true
-
 lvim.keys.normal_mode["A"] = ":m-2<CR>"
 lvim.keys.normal_mode["Z"] = ":m+1<CR>"
 lvim.keys.normal_mode["<M-w-Left>"] = ":resize +2<CR>"
 lvim.keys.normal_mode["<M-w-Right>"] = ":resize -2<CR>"
 lvim.keys.normal_mode["F"] = ":Prettier<CR>"
--- folding powered by treesitter
--- -- https://github.com/nvim-treesitter/nvim-treesitter#folding
--- -- look for foldenable: https://github.com/neovim/neovim/blob/master/src/nvim/options.lua
--- -- Vim cheatsheet, look for folds keys: https://devhints.io/vim
 vim.opt.foldmethod = "expr"                     -- default is "normal"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- default is ""
 vim.opt.foldenable = false
-lvim.builtin.treesitter.auto_install = true
--- lvim.builtin.treesitter.parser_install_dir("https://github.com/EmranMR/tree-sitter-blade")
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "csharp-language-server" })
+lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+  return server ~= "omnisharp"
+end, lvim.lsp.automatic_configuration.skipped_servers)
 
--- lvim.builtin.treesitter = {
---   lazy_load = true,
---   cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
---   build = ":TSUpdate",
---   opts = function()
---     return require("plugins.configs.treesitter")
---   end,
---   config = function(_, opts)
---     dofile(vim.g.base46_cache .. "syntax")
---     require("nvim-treesitter.configs").setup(opts)
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tailwindcss" })
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "intelephense" })
+lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+  return server ~= "phpactor"
+end, lvim.lsp.automatic_configuration.skipped_servers)
 
---     local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
---     parser_config.blade = {
---       install_info = {
---         url = "https://github.com/EmranMR/tree-sitter-blade",
---         files = { "src/parser.c" },
---         branch = "main",
---       },
---       filetype = "blade"
---     }
---   end,
--- }
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  max_file_size = 2000000
+})
 
--- vim.filetype.add({
---   pattern = {
---     ['.*%.blade%.php'] = 'blade',
---   },
--- })
--- if this option is true and fold method option is other than normal, every time a document is opened everything will be folded.
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+parser_config.blade = {
+  install_info = {
+    url = "https://github.com/EmranMR/tree-sitter-blade",
+    files = { "src/parser.c" },
+    branch = "main",
+  },
+  filetype = "blade",
+}
+
+vim.filetype.add({
+  pattern = {
+    ['.*%.blade%.php'] = 'blade',
+  },
+})

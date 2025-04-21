@@ -43,13 +43,13 @@ lvim.keys.normal_mode["F"] = ":Prettier<CR>"
 vim.opt.foldmethod = "expr"                     -- default is "normal"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- default is ""
 vim.opt.foldenable = false
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "csharp-language-server" })
+
+lvim.lsp.automatic_configuration.skipped_servers = {
+  "csharp_ls", "csharp-language-server", "csharp-language-server", "tailwindcss", "intelephense" }
+
 lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
   return server ~= "omnisharp"
 end, lvim.lsp.automatic_configuration.skipped_servers)
-
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tailwindcss" })
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "intelephense" })
 lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
   return server ~= "phpactor"
 end, lvim.lsp.automatic_configuration.skipped_servers)
@@ -71,5 +71,6 @@ parser_config.blade = {
 vim.filetype.add({
   pattern = {
     ['.*%.blade%.php'] = 'blade',
+    -- ['.*%.csproj'] = 'cs',
   },
 })

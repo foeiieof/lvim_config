@@ -1,0 +1,6 @@
+{
+  "cmd": ["omnisharp", "--languageserver", "--hostPID", "${pid}"],
+  "filetypes": ["cs", "csproj", "vb"],
+  "rootPatterns": [".sln", ".csproj", ".git"],
+  "enableRoslynAnalyzers": true
+}

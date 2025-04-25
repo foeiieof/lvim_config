@@ -40,8 +40,8 @@ lvim.keys.normal_mode["Z"] = ":m+1<CR>"
 lvim.keys.normal_mode["<M-w-Left>"] = ":resize +2<CR>"
 lvim.keys.normal_mode["<M-w-Right>"] = ":resize -2<CR>"
 lvim.keys.normal_mode["F"] = ":Prettier<CR>"
-vim.opt.foldmethod = "expr"                     -- default is "normal"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- default is ""
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = false
 
 lvim.lsp.automatic_configuration.skipped_servers = {
